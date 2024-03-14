@@ -1,0 +1,2 @@
+/usr/bin/ar qc libpayloadHandler.a CMakeFiles/payloadHandler.dir/src/payloadHandler.c.o
+/usr/bin/ranlib libpayloadHandler.a

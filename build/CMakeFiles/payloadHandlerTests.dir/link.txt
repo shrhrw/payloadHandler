@@ -1,0 +1,1 @@
+/usr/bin/cc CMakeFiles/payloadHandlerTests.dir/test/payloadHandlerTests.c.o -o payloadHandlerTests  libpayloadHandler.a libmunit.a 
