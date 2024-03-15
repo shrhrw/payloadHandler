@@ -1,1 +1,0 @@
-/usr/bin/cc CMakeFiles/sendPacket.dir/example/sendPacket.c.o -o sendPacket 

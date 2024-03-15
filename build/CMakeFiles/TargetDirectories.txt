@@ -1,6 +1,0 @@
-/home/sven/projects/ispace/payloadHandler/build/CMakeFiles/munit.dir
-/home/sven/projects/ispace/payloadHandler/build/CMakeFiles/payloadHandler.dir
-/home/sven/projects/ispace/payloadHandler/build/CMakeFiles/sendPacket.dir
-/home/sven/projects/ispace/payloadHandler/build/CMakeFiles/payloadHandlerTests.dir
-/home/sven/projects/ispace/payloadHandler/build/CMakeFiles/edit_cache.dir
-/home/sven/projects/ispace/payloadHandler/build/CMakeFiles/rebuild_cache.dir

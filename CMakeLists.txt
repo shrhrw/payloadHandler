@@ -18,7 +18,6 @@ include_directories(
 add_library( munit STATIC munit/munit.c )
 add_library( payloadHandler STATIC src/payloadHandler.c )
 
-add_executable( sendPacket example/sendPacket.c )
 add_executable( payloadHandlerTests test/payloadHandlerTests.c )
 
 target_link_libraries(
