@@ -27,11 +27,17 @@ typedef struct
 
 } PayloadHandler_t;
 
+// Set APID (for unit-testing)
 void setAPID( uint16_t value );
 
+// Set Command Code (for unit-testing)
 void setCommandCode( uint16_t value );
 
+// Set Register ID (for unit-testing)
 void setRegisterId( uint16_t value );
+
+// Mask APID out of StreamID
+uint8_t maskBits( uint8_t numBits, uint8_t startBit );
 
 // Function that validates the APID request.
 uint8_t validateAPID();

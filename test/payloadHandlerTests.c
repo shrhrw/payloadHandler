@@ -32,7 +32,7 @@ static MunitParameterEnum test_params_valid[] = {
     { NULL, NULL }
 };
 
-static MunitResult test_validate_inputs_valid( const MunitParameterEnum params[], void* user_data ) 
+static MunitResult test_validate_inputs_valid( const MunitParameter params[], void* user_data ) 
 {
     uint16_t apid         = atoi(munit_parameters_get( params, "APID" ));
     uint16_t command_code = atoi(munit_parameters_get( params, "CommandCode" ));
@@ -75,7 +75,7 @@ static MunitParameterEnum test_params_invalid[] = {
     { NULL, NULL }
 };
 
-static MunitResult test_validate_inputs_invalid( const MunitParameterEnum params[], void* user_data ) 
+static MunitResult test_validate_inputs_invalid( const MunitParameter params[], void* user_data ) 
 {
     uint16_t apid         = atoi(munit_parameters_get( params, "APID" ));
     uint16_t command_code = atoi(munit_parameters_get( params, "CommandCode" ));
@@ -98,20 +98,21 @@ static MunitResult test_validate_inputs_invalid( const MunitParameterEnum params
     }
 }
 
-uint16_t test_parse_packet( const MunitParameterEnum params[], void* user_data )
+static MunitParameterEnum test_params_parse_packet_valid[] = {
+    { "CommandCode", valid_command_code_params },
+    { "RegisterID",  valid_register_id_params },
+    { "StreamID",    valid_stream_id_params },
+    { NULL, NULL }
+};
+
+static MunitResult test_parse_packet( const MunitParameter params[], void* user_data )
 {
     uint16_t stream_id    = atoi(munit_parameters_get( params, "StreamID" ));
-    printf("\nstream_id is: %u\n", stream_id);
     uint16_t sequence     = 3;
-    printf("sequence is: %u\n", sequence);
     uint16_t length       = 16;
-    printf("length is: %u\n", length);
     uint16_t command_code = atoi(munit_parameters_get( params, "CommandCode" ));
-    printf("command_code is: %u\n", command_code);
     uint16_t register_id  = atoi(munit_parameters_get( params, "RegisterID" ));
-    printf("register_id is: %u\n", register_id);
     uint16_t value        = 42;
-    printf("value is: %u\n", value);
     (void)user_data;
 
     CCSDS_PayloadHandlerPacket_t packet;
@@ -128,9 +129,9 @@ uint16_t test_parse_packet( const MunitParameterEnum params[], void* user_data )
 }
 
 static MunitTest test_suite_tests[] = {
-    //{ (char*) "/test_validate_inputs_valid", test_validate_inputs_valid, NULL, NULL, MUNIT_TEST_OPTION_NONE, test_params_valid },
-    //{ (char*) "/test_validate_inputs_invalid", test_validate_inputs_invalid, NULL, NULL, MUNIT_TEST_OPTION_NONE, test_params_invalid },
-    { (char*) "/parsePacket", test_parse_packet, NULL, NULL, MUNIT_TEST_OPTION_NONE, test_params_valid },
+    { (char*) "/test_validate_inputs_valid", test_validate_inputs_valid, NULL, NULL, MUNIT_TEST_OPTION_NONE, test_params_valid },
+    { (char*) "/test_validate_inputs_invalid", test_validate_inputs_invalid, NULL, NULL, MUNIT_TEST_OPTION_NONE, test_params_invalid },
+    { (char*) "/test_parse_packet", test_parse_packet, NULL, NULL, MUNIT_TEST_OPTION_NONE, test_params_parse_packet_valid },
     { NULL, NULL, NULL, NULL, MUNIT_TEST_OPTION_NONE, NULL }
 };
 

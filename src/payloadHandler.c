@@ -22,22 +22,6 @@ uint8_t maskBits( uint8_t numBits, uint8_t startBit )
     return ( ( 1 << numBits ) - 1 ) << startBit;
 }
 
-uint8_t reverseBits( uint8_t value ) 
-{
-    uint8_t reversedBits = 0;
-    while( value > 0 ) 
-    {
-        reversedBits <<= 1;
-        if ( value & 1 == 1 )
-        {
-            reversedBits ^= 1;
-        }
-        value >>= 1;
-    }
-
-    return reversedBits;
-}
-
 uint8_t validateAPID()
 {
     if ( ( PayloadHandler_Data.apid == 0 )   ||
@@ -87,7 +71,7 @@ uint8_t validateRegisterId()
 
 uint8_t parsePacket( CCSDS_PayloadHandlerPacket_t packet )
 {
-    PayloadHandler_Data.apid        = maskBits( 11, 16 ) & packet.primaryHeader.StreamId;
+    PayloadHandler_Data.apid        = (packet.primaryHeader.StreamId >> 5) & ((1 << 11) - 1 );
     PayloadHandler_Data.commandCode = packet.secondaryHeader.CommandCode;
     PayloadHandler_Data.registerId  = packet.secondaryHeader.RegisterId;
     PayloadHandler_Data.value       = packet.secondaryHeader.Value;
